@@ -67,7 +67,7 @@ public class ProductRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    private static final String DELETE_BY_ID = "DELETE * FROM products WHERE id_product= :id_product";
+    private static final String DELETE_BY_ID = "DELETE FROM products WHERE id_product= :id_product";
     private static final String UPDATE_PRODUCT_BY_ID = "UPDATE products SET title= : title, price= :price, " +
             "category= :category, description= :description, image =:image WHERE id_product =:id_product";
     private static final String SELECT_BY_CATEGORY = "SELECT * FROM products WHERE category = :category";

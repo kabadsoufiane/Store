@@ -9,6 +9,8 @@ import lombok.NonNull;
 public class ProductQuantity {
 
     @NonNull
+    private int id_productQuantity;
+    @NonNull
     private Product product_id;
     @NonNull
     private int quantity;

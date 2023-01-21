@@ -28,6 +28,36 @@ public class AddressRepository {
         jdbc.update(INSERT_SQL, parameters);
     }
 
+    public List<Address> getAddresses(){
+        return jdbc.query(SELECT_ALL_ADRESSES, (rs, rowNum) -> buildFragment(rs));
+    }
+
+    public List<Address> getAddressById(@NonNull int id_user){
+        return jdbc.query(SELECT_ALL_ADDRESSES_BYID ,
+                new MapSqlParameterSource()
+                        .addValue("id_user", id_user, Types.INTEGER),
+                (rs, rowNum) -> buildFragment(rs));
+    }
+
+    public void updateAddressById(@NonNull int id_user){
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("id_user", id_user, Types.INTEGER);
+        jdbc.update(UPDATE_ADDRESS_BY_ID, parameters);
+    }
+
+    public void deleteAddressById(@NonNull int id_user){
+        jdbc.query(DELETE_BY_ID,
+                new MapSqlParameterSource()
+                        .addValue("id_user", id_user, Types.INTEGER),
+                (rs, rowNum) -> buildFragment(rs));
+    }
+
+    private static final String DELETE_BY_ID = "DELETE FROM address WHERE id_user= :id_user";
+    private static final String SELECT_ALL_ADRESSES = "SELECT * FROM address";
+    private static final String SELECT_ALL_ADDRESSES_BYID = "SELECT * FROM address WHERE id_user= :id_user";
+    private static final String UPDATE_ADDRESS_BY_ID = "UPDATE address SET country= :country, " +
+            "city= :city, number= :number, zipcode= :zipcode, latitude= :latitude, longitude= :longitude " +
+            "WHERE id_user= :id_user";
     private static final String INSERT_SQL = "INSERT INTO " +
             "address(country, city, number, zipcode, latitude, longitude) " +
             "VALUES(:country, :city, :number, :zipcode, :latitude, :longitude)";
