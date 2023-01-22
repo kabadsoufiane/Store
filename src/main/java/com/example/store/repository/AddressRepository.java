@@ -39,9 +39,16 @@ public class AddressRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void updateAddressById(@NonNull int id_user){
+    public void updateAddressById(@NonNull int id_user, String country, String city, int number, String zipcode,
+                                  double latitude, double longitude){
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id_user", id_user, Types.INTEGER);
+                .addValue("id_user", id_user, Types.INTEGER)
+                .addValue("country", country, Types.VARCHAR)
+                .addValue("city", city, Types.VARCHAR)
+                .addValue("number", number, Types.INTEGER)
+                .addValue("zipcode", zipcode, Types.VARCHAR)
+                .addValue("latitude", latitude, Types.NUMERIC)
+                .addValue("longitude", longitude, Types.NUMERIC);
         jdbc.update(UPDATE_ADDRESS_BY_ID, parameters);
     }
 

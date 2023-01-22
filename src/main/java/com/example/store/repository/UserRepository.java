@@ -61,7 +61,7 @@ public class UserRepository {
 
     }
 
-    private static final String UPDATE_USER_BY_ID = "UPDATE cart SET email= :email, password= :password," +
+    private static final String UPDATE_USER_BY_ID = "UPDATE users SET email= :email, password= :password," +
             " first_name= :first_name, last_name= :last_name, phone= :phone WHERE id_user =:id_user";
     private static final String DELETE_BY_ID = "DELETE FROM users WHERE id_user= :id_user";
     private static final String SELECT_ALL_USER = "SELECT * FROM users";

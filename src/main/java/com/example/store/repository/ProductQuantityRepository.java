@@ -36,9 +36,10 @@ public class ProductQuantityRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void updateProductQuantitiesById(@NonNull int id_product){
+    public void updateProductQuantitiesById(@NonNull int id_product, int productquantity){
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id_product", id_product, Types.INTEGER);
+                .addValue("id_product", id_product, Types.INTEGER)
+                .addValue("productquantity", productquantity, Types.INTEGER);
         jdbc.update(UPDATE_QUANTITY_BY_ID, parameters);
     }
 

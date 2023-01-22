@@ -35,9 +35,11 @@ public class RatingsRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void updateRatingById(@NonNull int id_product){
+    public void updateRatingById(@NonNull int id_product, int count, double rate){
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id_product", id_product, Types.INTEGER);
+                .addValue("id_product", id_product, Types.INTEGER)
+                        .addValue("count", count, Types.INTEGER)
+                                .addValue("rate", rate, Types.NUMERIC);
         jdbc.update(UPDATE_RATING_BY_ID, parameters);
     }
 

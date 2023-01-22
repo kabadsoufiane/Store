@@ -59,7 +59,7 @@ public class CartRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void updateProductById(@NonNull int id_cart, int id_user, LocalDate date){
+    public void setUpdateCartById(@NonNull int id_cart, int id_user, LocalDate date){
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id_cart", id_cart, Types.INTEGER)
                 .addValue("id_user", id_user, Types.INTEGER)
