@@ -1,8 +1,6 @@
 package com.example.store.repository;
 
-import com.example.store.domain.Cart;
 import com.example.store.domain.ProductQuantity;
-import com.example.store.domain.Rating;
 import lombok.NonNull;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

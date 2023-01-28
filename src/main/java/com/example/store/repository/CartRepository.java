@@ -1,10 +1,8 @@
 package com.example.store.repository;
 
 import com.example.store.domain.Cart;
-import com.example.store.domain.Product;
+import com.example.store.domain.User;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -59,7 +57,7 @@ public class CartRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void setUpdateCartById(@NonNull int id_cart, int id_user, LocalDate date){
+    public void setUpdateCartById(@NonNull int id_cart, User id_user, LocalDate date){
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id_cart", id_cart, Types.INTEGER)
                 .addValue("id_user", id_user, Types.INTEGER)
@@ -93,7 +91,7 @@ public class CartRepository {
     private Cart buildFragment(ResultSet rs) throws SQLException {
         return Cart.builder()
                 .id_cart(rs.getInt("id_cart"))
-                .date(rs.getDate("date"))
+                .date(rs.getDate("date").toLocalDate())
                 .build();
 
     }

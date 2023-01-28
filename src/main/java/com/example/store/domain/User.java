@@ -14,7 +14,6 @@ public class User {
     private String email;
     @NonNull
     private String password;
-    @NonNull
     private List<Name> names;
     @NonNull
     private int phone;

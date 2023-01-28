@@ -1,12 +1,9 @@
 package com.example.store.service;
 
 import com.example.store.domain.Address;
-import com.example.store.domain.User;
 import com.example.store.repository.AddressRepository;
-import com.example.store.repository.UserRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +13,9 @@ public class AddressService {
     @Autowired
     AddressRepository addressRepository;
 
+    public void insertData(@NonNull Address address){
+        addressRepository.insertData(address);
+    }
     public List<Address> getAddresses(){
         return addressRepository.getAddresses();
     }

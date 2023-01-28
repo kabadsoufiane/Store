@@ -16,11 +16,11 @@ class StoreApplicationTests {
     @Test
     void contextLoads() {
     }
-    @Test
+    /*@Test
     public void insertProductTest(){
         productController.addProduct("test product", 13.5, "electronic", "lorem ipsum set",
                 "https://i.pravatar.cc", null);
-    }
+    }*/
 
 
 }

@@ -2,7 +2,7 @@ package com.example.store.domain;
 
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Builder
@@ -14,6 +14,6 @@ public class Cart {
     @NonNull
     private User id_user;
     @NonNull
-    private Date date;
+    private LocalDate date;
     private List<ProductQuantity> productQuantities;
 }

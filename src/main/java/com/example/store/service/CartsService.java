@@ -1,13 +1,11 @@
 package com.example.store.service;
 
 import com.example.store.domain.Cart;
-import com.example.store.domain.ProductQuantity;
+import com.example.store.domain.User;
 import com.example.store.repository.CartRepository;
 import com.example.store.repository.ProductQuantityRepository;
-import com.example.store.repository.ProductRepository;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,9 +19,8 @@ public class CartsService {
     @Autowired
     ProductQuantityRepository productQuantityRepository;
 
-    public void insertCart(Cart cart, ProductQuantity productQuantity){
+    public void insertCart(Cart cart){
         cartRepository.insertData(cart);
-        productQuantityRepository.insertData(productQuantity);
     }
 
     public List<Cart> getAllCart(){
@@ -34,7 +31,7 @@ public class CartsService {
         return cartRepository.getCartById(id_cart);
     }
 
-    public List<Cart> getCarteByDatesRange(@NonNull LocalDate date){
+    public List<Cart> getCarteByDate(@NonNull LocalDate date){
         return cartRepository.getCartByDate(date);
     }
 
@@ -46,7 +43,7 @@ public class CartsService {
         return cartRepository.getCartByUser(id_user);
     }
 
-    public void updateCartById(@NonNull int id_cart, int id_user, LocalDate date){
+    public void updateCartById(@NonNull int id_cart, User id_user, LocalDate date){
         cartRepository.setUpdateCartById(id_cart, id_user, date);
     }
 

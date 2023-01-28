@@ -1,7 +1,5 @@
 package com.example.store.repository;
 
-import com.example.store.domain.Address;
-import com.example.store.domain.Cart;
 import com.example.store.domain.Name;
 import com.example.store.domain.User;
 import lombok.NonNull;
