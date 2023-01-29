@@ -13,6 +13,10 @@ public class RatingsService {
     @Autowired
     RatingsRepository ratingsRepository;
 
+    public void insertRatings(@NonNull Rating rating){
+        ratingsRepository.insertData(rating);
+
+    }
     public List<Rating> getAllRatings(){
         return ratingsRepository.getRatings();
     }
@@ -25,7 +29,7 @@ public class RatingsService {
         ratingsRepository.updateRatingById(id_product, count, rate);
     }
 
-    public void deleteRatingsBuId(@NonNull int id_product){
+    public void deleteRatingsById(@NonNull int id_product){
         ratingsRepository.deleteRatingsById(id_product);
     }
 }

@@ -18,7 +18,7 @@ public class ProductQuantityRepository {
 
     public void insertData(@NonNull ProductQuantity productQuantities) {
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("product_id", productQuantities.getProduct_id(), Types.INTEGER)
+                .addValue("id_product", productQuantities.getProduct_id(), Types.INTEGER)
                 .addValue("quantity", productQuantities.getQuantity(), Types.INTEGER);
         jdbc.update(INSERT_SQL, parameters);
     }
@@ -52,7 +52,8 @@ public class ProductQuantityRepository {
     private static final String SELECT_ALL_PRODUCTSQUANTITY = "SELECT * FROM productquantity";
     private static final String SELECT_ALL_PRODUCTSQUANTITY_BYID = "SELECT * FROM productquantity WHERE id_product= :id_product";
     private static final String UPDATE_QUANTITY_BY_ID = "UPDATE productquantity SET productquantity= : productquantity";
-    private static final String INSERT_SQL = "INSERT INTO productQuantity(productquantity, productQuantity) VALUES(:product_id ,:productQuantity)";
+    private static final String INSERT_SQL = "INSERT INTO productQuantity(id_product, productQuantity) " +
+            "VALUES(:id_product, :productQuantity)";
     private final NamedParameterJdbcTemplate jdbc;
 
     public ProductQuantityRepository(DataSource ds) {
@@ -60,6 +61,7 @@ public class ProductQuantityRepository {
     }
     private ProductQuantity buildFragment(ResultSet rs) throws SQLException {
         return ProductQuantity.builder()
+                .quantity(rs.getInt("id_product"))
                 .quantity(rs.getInt("quantity"))
                 .build();
     }

@@ -20,9 +20,6 @@ public class ProductsService {
 
     public void insertProduct(Product product){
         productRepository.insertData(product);
-        if(product.getRating() != null) {
-            ratingsRepository.insertData((Rating) product.getRating());
-        }
     }
 
     public List<Product> getAllProducts(){

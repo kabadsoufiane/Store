@@ -13,6 +13,10 @@ public class ProductQuantityService {
     @Autowired
     ProductQuantityRepository productQuantityRepository;
 
+    public void insertProductQuantities(ProductQuantity productQuantity){
+        productQuantityRepository.insertData(productQuantity);
+    }
+
     public List<ProductQuantity> getProductQuantities(){
         return productQuantityRepository.getProductQuantities();
     }

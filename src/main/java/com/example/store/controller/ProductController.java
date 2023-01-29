@@ -18,19 +18,12 @@ public class ProductController {
 
     @PostMapping(value = "/addProduct")
     public ResponseEntity<Product> addProduct(@RequestBody Product request) {
-        Product product = Product.builder()
-                .title(request.getTitle())
-                .price(request.getPrice())
-                .category(request.getCategory())
-                .description(request.getDescription())
-                .image(request.getImage())
-                .build();
         try {
-            productsService.insertProduct(product);
+            productsService.insertProduct(request);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(product, HttpStatus.CREATED);
+        return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
 
     @GetMapping("/GetAllProducts")
@@ -39,7 +32,7 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/GetProductById")
+    @GetMapping("/GetProductById/{id_product}")
     public ResponseEntity<List<Product>> GetProductById(@PathVariable int id_product){
         List<Product> products = productsService.getProductById(id_product);
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -51,7 +44,7 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    @GetMapping("/getProductsByCategory")
+    @GetMapping("/getProductsByCategory/{category}")
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category){
         List<Product> products = productsService.getProductsByCategory(category);
         return new ResponseEntity<>(products, HttpStatus.OK);
