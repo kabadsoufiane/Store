@@ -71,7 +71,7 @@ public class CartController {
     @PutMapping("/updateCart/{id_cart}")
     public ResponseEntity<Cart> updateCart(@PathVariable int id_cart, @RequestBody Cart request) {
         try {
-            cartsService.updateCartById(id_cart, request.getId_user(), request.getDate());
+            cartsService.updateCartById(id_cart, request.getId_user(), request.getProductQuantities().get(0).getId_productQuantity(), request.getDate());
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }

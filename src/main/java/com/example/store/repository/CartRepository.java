@@ -1,6 +1,7 @@
 package com.example.store.repository;
 
 import com.example.store.domain.Cart;
+import com.example.store.domain.ProductQuantity;
 import com.example.store.domain.User;
 import lombok.NonNull;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -21,6 +22,7 @@ public class CartRepository {
     public void insertData(@NonNull Cart carts) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id_user", carts.getId_user(), Types.INTEGER)
+                .addValue("id_productquantity", carts.getProductQuantities().get(0).getId_productQuantity(), Types.INTEGER)
                 .addValue("date", carts.getDate(), Types.DATE);
         jdbc.update(INSERT_SQL, parameters);
     }
@@ -57,10 +59,12 @@ public class CartRepository {
                 (rs, rowNum) -> buildFragment(rs));
     }
 
-    public void setUpdateCartById(@NonNull int id_cart, User id_user, LocalDate date){
+    public void setUpdateCartById(@NonNull int id_cart, User id_user,
+                                  @NonNull int id_productquantity, LocalDate date){
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("id_cart", id_cart, Types.INTEGER)
                 .addValue("id_user", id_user, Types.INTEGER)
+                .addValue("id_productquantity", id_productquantity, Types.INTEGER)
                 .addValue("date", date, Types.DATE);
         jdbc.update(UPDATE_CART_BY_ID, parameters);
 
@@ -74,7 +78,8 @@ public class CartRepository {
     }
 
     private static final String DELETE_BY_ID = "DELETE FROM cart WHERE id_cart= :id_cart";
-    private static final String UPDATE_CART_BY_ID = "UPDATE cart SET id_user= : id_user, date= :date" +
+    private static final String UPDATE_CART_BY_ID = "UPDATE cart SET id_user= : id_user, " +
+            "id_productquantity= :id_productquantity,date= :date" +
             " WHERE id_cart =:id_cart";
     private static final String SELECT_BY_USER = "SELECT * FROM cart WHERE id_user = :id_user";
     private static final String SELECT_BY_DATE_RANGE = "SELECT * FROM cart WHERE date >= :date1 AND date <= :date2";

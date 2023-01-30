@@ -1,6 +1,7 @@
 package com.example.store.service;
 
 import com.example.store.domain.Cart;
+import com.example.store.domain.ProductQuantity;
 import com.example.store.domain.User;
 import com.example.store.repository.CartRepository;
 import com.example.store.repository.ProductQuantityRepository;
@@ -43,8 +44,8 @@ public class CartsService {
         return cartRepository.getCartByUser(id_user);
     }
 
-    public void updateCartById(@NonNull int id_cart, User id_user, LocalDate date){
-        cartRepository.setUpdateCartById(id_cart, id_user, date);
+    public void updateCartById(@NonNull int id_cart, User id_user, @NonNull int id_productquantity, LocalDate date){
+        cartRepository.setUpdateCartById(id_cart, id_user, id_productquantity, date);
     }
 
     public void deleteCartById(@NonNull int id_cart){

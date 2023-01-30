@@ -48,7 +48,7 @@ public class RatingController {
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id_product}")
+    @DeleteMapping("/delete/{id_rating}")
     public ResponseEntity<Void> deleteRatingsById(@PathVariable int id_product){
         ratingsService.deleteRatingsById(id_product);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
